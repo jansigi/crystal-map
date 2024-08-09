@@ -199,12 +199,12 @@ class SchemaGeneration {
         isObject: Boolean,
         hasProperty: Boolean
     ) = when {
-        hasProperty && isIterable-> CMConverterList::class.asTypeName()
-        hasProperty -> CMConverterField::class.asTypeName()
+        hasProperty && isIterable-> CMList::class.asTypeName()
+        hasProperty -> CMField::class.asTypeName()
         isIterable && isObject -> CMObjectList::class.asTypeName()
-        isIterable -> CMList::class.asTypeName()
+        isIterable -> CMJsonList::class.asTypeName()
         isObject -> CMObject::class.asTypeName()
-        else -> CMField::class.asTypeName()
+        else -> CMJsonField::class.asTypeName()
     }
 
     private fun getInnerPropertyType(field: CblBaseFieldHolder): TypeName {
